@@ -1,8 +1,24 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model KanbanColumn {
+  id    Int                @id @default(autoincrement())
+  name  String
+  items KanbanItem[]
+  index Int
+}
+
+model KanbanItem {
+  id             Int           @id @default(autoincrement())
+  name           String
+  done           Boolean
+  kanbanColumn   KanbanColumn? @relation(fields: [kanbanColumnId], references: [id])
+  kanbanColumnId Int?
+  index Int
 }

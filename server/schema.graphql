@@ -4,6 +4,10 @@ type Query {
 
 type Mutation {
     moveItem(itemId: ID!, toListId: ID!, index: Int!): [KanbanColumn!]!
+    moveColumn(columnId: ID!, index: Int!): [KanbanColumn!]!
+    addItem(toListId: ID!): [KanbanColumn!]!
+    addColumn(name: String!): [KanbanColumn!]!
+    toggleDone(itemId: ID!, done: Boolean!): [KanbanColumn!]!
 }
 
 type KanbanColumn {
